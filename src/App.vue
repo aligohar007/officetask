@@ -1,7 +1,9 @@
 <template>
-  <HelloWorld/>
+  <Loginbiomatric/>
 </template>
 
 <script setup>
-import HelloWorld from './components/HelloWorld.vue';
+import Loginbiomatric from './components/Loginbiomatric.vue';
+
+
 </script>
