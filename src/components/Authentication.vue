@@ -33,11 +33,15 @@
       <div class="text-center p-8">
         <h2 class="text-2xl font-bold mb-4">Quick Login</h2>
         <p class="mb-6">Use your fingerprint or face recognition</p>
+           <input v-model="userId" 
+             type="text" 
+             placeholder="Enter User ID" 
+             class="w-full px-3 py-2 border rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
 
         <!-- Biometric Button -->
         <button @click="verifyBiometric"
           class="relative flex block mx-auto items-center justify-center w-56 h-12 bg-white text-black font-semibold rounded-lg shadow hover:bg-gray-100 transition disabled:opacity-50"
-          :disabled="loading">
+           :disabled="loading || !userId">
 
           <!-- Spinner + Text -->
           <span v-if="loading" class="absolute flex items-center justify-center">
@@ -70,6 +74,7 @@ const email = ref("")
 const password = ref("")
 const message = ref("")
 const biometricMessage = ref("")
+const userId = ref('')
 const loading = ref(false)
 
 // Normal Login Function (dummy)
@@ -82,26 +87,40 @@ const login = async () => {
 }
 
 // Biometric Verification Function
-const verifyBiometric = async () => {
-  try {
-    loading.value = true
-    biometricMessage.value = ""
+const API_URL = 'http://localhost:5000/api/biometric/verify'
 
-    // 2-second delay
+
+
+const verifyBiometric = async () => {
+  if (!userId.value) return
+  loading.value = true
+  biometricMessage.value = ''
+
+  try {
     await new Promise(resolve => setTimeout(resolve, 2000))
 
-    // API call after 2 seconds
-    const response = await axios.post("http://localhost:5000/api/biometric/verify", {
-      userId: "12345",
-      biometricToken: "sample123"
+    const inputId = userId.value.trim();
+
+    // Map of userId -> token
+    const userTokens = {
+      "101": "fingerprint101",
+      "102": "face102"
+    }
+
+    const token = userTokens[inputId] || "wrong-token";
+
+    const response = await axios.post(API_URL, {
+      userId: inputId,
+      biometricToken: token
     })
 
     biometricMessage.value = response.data.message
-  } catch (error) {
-    biometricMessage.value = " Error: " + error.message
+  } catch (err) {
+    biometricMessage.value = 'Error: ' + (err.response?.data?.message || err.message)
   } finally {
     loading.value = false
   }
 }
+
 
 </script>
