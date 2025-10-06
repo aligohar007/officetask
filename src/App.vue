@@ -5,7 +5,7 @@
 
 <script setup>
 import Authentication from './components/Authentication.vue';
-import Loginbiomatric from './components/Loginbiomatric.vue';
+// import Loginbiomatric from './components/Loginbiomatric.vue';
 
 
 </script>

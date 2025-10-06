@@ -1,3 +1,5 @@
+
+
 import express from "express";
 import cors from "cors";
 
@@ -9,7 +11,6 @@ app.get("/", (req, res) => {
   res.send(" Backend is running fine! Use POST /api/biometric/verify to test biometric API.");
 });
 
-//  Dummy biometric verify API (POST)
 app.post("/api/biometric/verify", (req, res) => {
   const { userId, biometricToken } = req.body;
 
@@ -20,5 +21,4 @@ app.post("/api/biometric/verify", (req, res) => {
   }
 });
 
-//  Server listener
 app.listen(5000, () => console.log(" Server running on port 5000"));
