@@ -37,8 +37,8 @@
         <!-- Biometric Button -->
      <!-- Biometric Button -->
 <button @click="verifyBiometric"
-  class="relative block mx-auto flex items-center justify-center w-56 h-12 
-         bg-white text-blue-700 font-semibold rounded-lg shadow 
+  class="relative block mx-auto  items-center justify-center w-56 h-12 
+         bg-white text-black font-semibold rounded-lg shadow 
          hover:bg-gray-100 transition disabled:opacity-50"
   :disabled="loading">
   🔒 Login with Biometric
