@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 
 const app = express();
+
 const users = [
   { userId: "101", biometricToken: "fingerprint101" },
   { userId: "102", biometricToken: "face102" }
