@@ -42,7 +42,6 @@
           class="relative flex block mx-auto items-center justify-center w-56 h-12 bg-white text-black font-semibold rounded-lg shadow hover:bg-gray-100 transition disabled:opacity-50"
           :disabled="loading || !userId">
 
-          <!-- Spinner + Animated Icon -->
           <span v-if="loading" class="flex items-center justify-center">
             <svg class="animate-spin h-5 w-5 mr-2 text-blue-700" xmlns="http://www.w3.org/2000/svg" fill="none"
               viewBox="0 0 24 24">
@@ -53,7 +52,7 @@
             Scanning...
           </span>
 
-          <!-- Button Text -->
+      
           <span v-else>🔒 Login with Biometric</span>
         </button>
 

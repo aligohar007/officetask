@@ -20,7 +20,6 @@ app.get("/", (req, res) => {
 app.post("/api/biometric/verify", (req, res) => {
   const { userId, biometricToken } = req.body;
 
-  // Trim to remove extra spaces
   const inputId = userId.trim();
   const inputToken = biometricToken.trim();
 
