@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100 ">
     <h1 class="text-2xl font-bold mb-6 text-gray-800 ">
-      🔐 Hospital Biometric Login
+      Hospital Biometric Login
     </h1>
 
     <!-- Username Input -->
