@@ -35,17 +35,23 @@
         <p class="mb-6">Use your fingerprint or face recognition</p>
 
         <!-- Biometric Button -->
-     <!-- Biometric Button -->
-<button @click="verifyBiometric"
-  class="relative block mx-auto  items-center justify-center w-56 h-12 
-         bg-white text-black font-semibold rounded-lg shadow 
-         hover:bg-gray-100 transition disabled:opacity-50"
-  :disabled="loading">
-  🔒 Login with Biometric
-</button>
+        <button @click="verifyBiometric"
+          class="relative flex block mx-auto items-center justify-center w-56 h-12 bg-white text-black font-semibold rounded-lg shadow hover:bg-gray-100 transition disabled:opacity-50"
+          :disabled="loading">
 
+          <!-- Spinner + Text -->
+          <span v-if="loading" class="absolute flex items-center justify-center">
+            <svg class="animate-spin h-5 w-5 mr-2 text-blue-700" xmlns="http://www.w3.org/2000/svg" fill="none"
+              viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+            </svg>
+            Loading...
+          </span>
 
-
+          <!-- Button Text -->
+          <span v-else>🔒 Login with Biometric</span>
+        </button>
 
         <!-- Result Message -->
         <p v-if="biometricMessage" class="mt-4 text-lg font-semibold">
@@ -81,9 +87,13 @@ const verifyBiometric = async () => {
     loading.value = true
     biometricMessage.value = ""
 
+    // 2-second delay
+    await new Promise(resolve => setTimeout(resolve, 2000))
+
+    // API call after 2 seconds
     const response = await axios.post("http://localhost:5000/api/biometric/verify", {
       userId: "12345",
-      biometricToken: "sample123" 
+      biometricToken: "sample123"
     })
 
     biometricMessage.value = response.data.message
@@ -93,4 +103,5 @@ const verifyBiometric = async () => {
     loading.value = false
   }
 }
+
 </script>
