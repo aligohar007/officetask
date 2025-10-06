@@ -2,14 +2,16 @@ import express from "express";
 import cors from "cors";
 
 const app = express();
+app.use(cors());
+app.use(express.json());
 
 const users = [
   { userId: "101", biometricToken: "fingerprint101" },
-  { userId: "102", biometricToken: "face102" }
+  { userId: "102", biometricToken: "face102" },
+  {userId: "103" , biometricToken: "iris103"}
 ];
 
-app.use(cors());
-app.use(express.json());
+
 
 app.get("/", (req, res) => {
   res.send(" Backend is running! Use POST /api/biometric/verify");

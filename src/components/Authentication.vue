@@ -35,7 +35,7 @@
 
         <!-- UserID Input -->
         <input v-model="userId" type="text" placeholder="Enter Staff ID"
-          class="w-full px-3 py-2 border rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-300 text-black" />
+          class="w-full px-3 py-2 border rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-300 text-white" />
 
         <!-- Biometric Button -->
         <button @click="verifyBiometric"
@@ -86,9 +86,9 @@ const success = ref(false)
 // Dummy Login
 const login = () => {
   if (email.value && password.value) {
-    message.value = `✅ Logged in as ${email.value}`
+    message.value = ` Logged in as ${email.value}`
   } else {
-    message.value = "❌ Please enter email and password"
+    message.value = " Please enter email and password"
   }
 }
 
@@ -99,6 +99,7 @@ const API_URL = "http://localhost:5000/api/biometric/verify"
 const userProfiles = {
   "101": { name: "Dr. Ali", role: "Doctor", token: "fingerprint101", type: "Fingerprint" },
   "102": { name: "Nurse Sara", role: "Nurse", token: "face102", type: "Face Recognition" },
+   "103": { name: "Admin John", role: "Administrator", token: "iris103", type: "Iris Scan" }
 }
 
 // Biometric Demo
